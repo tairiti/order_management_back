@@ -7,7 +7,7 @@ CREATE TABLE customer (
                           id serial  NOT NULL,
                           registration_code int  NOT NULL,
                           full_name varchar(255)  NOT NULL,
-                          email varchar(255)  NOT NULL,
+                          email varchar(255) UNIQUE NOT NULL,
                           telephone int  NOT NULL,
                           CONSTRAINT customer_pk PRIMARY KEY (id)
 );
