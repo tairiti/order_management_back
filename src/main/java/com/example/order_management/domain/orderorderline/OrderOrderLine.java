@@ -1,7 +1,7 @@
-package com.example.order_management.domain;
+package com.example.order_management.domain.orderorderline;
 
-import com.example.order_management.domain.Order;
-import com.example.order_management.domain.OrderLine;
+import com.example.order_management.domain.order.Order;
+import com.example.order_management.domain.orderline.OrderLine;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -13,6 +13,7 @@ import lombok.Setter;
 @Table(name = "order_order_line")
 public class OrderOrderLine {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

@@ -1,6 +1,7 @@
-package com.example.order_management.domain;
+package com.example.order_management.domain.customerorder;
 
 import com.example.order_management.domain.customer.Customer;
+import com.example.order_management.domain.order.Order;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Table(name = "customer_order")
 public class CustomerOrder {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

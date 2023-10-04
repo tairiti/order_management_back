@@ -1,4 +1,4 @@
-package com.example.order_management.domain;
+package com.example.order_management.domain.orderline;
 
 import com.example.order_management.domain.product.Product;
 import jakarta.persistence.*;
@@ -12,6 +12,7 @@ import lombok.Setter;
 @Table(name = "order_line")
 public class OrderLine {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

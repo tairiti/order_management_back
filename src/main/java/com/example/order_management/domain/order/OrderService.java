@@ -1,7 +1,7 @@
-package com.example.order_management.business.order;
+package com.example.order_management.domain.order;
 
-import com.example.order_management.domain.Order;
-import com.example.order_management.domain.OrderRepository;
+import com.example.order_management.domain.order.Order;
+import com.example.order_management.domain.order.OrderRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
