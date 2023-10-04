@@ -1,6 +1,6 @@
-package com.example.order_management.business;
+package com.example.order_management.business.customer;
 
-import com.example.order_management.domain.CustomerService;
+import com.example.order_management.domain.customer.CustomerService;
 import com.example.order_management.domain.customer.Customer;
 import com.example.order_management.domain.customer.CustomerMapper;
 import jakarta.annotation.Resource;

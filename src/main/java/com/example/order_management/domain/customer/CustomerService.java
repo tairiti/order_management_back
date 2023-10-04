@@ -1,6 +1,5 @@
-package com.example.order_management.domain;
+package com.example.order_management.domain.customer;
 
-import com.example.order_management.business.CustomerRequest;
 import com.example.order_management.domain.customer.Customer;
 import com.example.order_management.domain.customer.CustomerRepository;
 import com.example.order_management.validation.ValidationService;

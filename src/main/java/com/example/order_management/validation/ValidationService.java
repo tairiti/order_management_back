@@ -8,4 +8,10 @@ public class ValidationService {
             throw new BusinessException(Error.EMAIL_UNAVAILABLE.getMessage(), Error.EMAIL_UNAVAILABLE.getErrorCode());
         }
     }
+
+    public static void validateSkuCodeIsAvailable(boolean productExists) {
+        if (productExists) {
+            throw new BusinessException(Error.PRODUCT_UNAVAILABLE.getMessage(), Error.PRODUCT_UNAVAILABLE.getErrorCode());
+        }
+    }
 }
