@@ -17,4 +17,8 @@ public class ProductService {
         boolean productExists = productRepository.productExistBy(skuCode);
         ValidationService.validateSkuCodeIsAvailable(productExists);
     }
+
+    public Product findProductBy(Integer skuCode) {
+        return productRepository.findProductBy(skuCode);
+    }
 }
