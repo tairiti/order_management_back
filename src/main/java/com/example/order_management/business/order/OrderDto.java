@@ -1,5 +1,6 @@
-package com.example.order_management.domain.order;
+package com.example.order_management.business.order;
 
+import com.example.order_management.domain.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

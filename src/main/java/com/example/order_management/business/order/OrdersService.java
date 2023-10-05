@@ -4,7 +4,6 @@ import com.example.order_management.domain.customerorder.CustomerOrder;
 import com.example.order_management.domain.customerorder.CustomerOrderMapper;
 import com.example.order_management.domain.customerorder.CustomerOrderService;
 import com.example.order_management.domain.order.Order;
-import com.example.order_management.domain.order.OrderDto;
 import com.example.order_management.domain.order.OrderMapper;
 import com.example.order_management.domain.order.OrderService;
 import com.example.order_management.domain.orderline.OrderLine;
@@ -42,9 +41,7 @@ public class OrdersService {
     private OrderMapper orderMapper;
 
     public CustomerOrderResponse createNewCustomerOrder(Integer customerId) {
-        Order order = new Order();
-        order.setSubmissionDate(LocalDate.now());
-        orderService.saveOrder(order);
+        Order order = createAndSaveOrder();
 
         Customer customer = customerService.findCustomerBy(customerId);
         CustomerOrder customerOrder = new CustomerOrder();
@@ -52,6 +49,13 @@ public class OrdersService {
         customerOrder.setOrder(order);
         customerOrderService.saveCustomerOrder(customerOrder);
         return customerOrderMapper.toCustomerOrderResponse(customerOrder);
+    }
+
+    private Order createAndSaveOrder() {
+        Order order = new Order();
+        order.setSubmissionDate(LocalDate.now());
+        orderService.saveOrder(order);
+        return order;
     }
 
     public void addOrderLine(Integer customerOrderId, Integer skuCode, Integer quantity) {

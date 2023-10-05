@@ -1,6 +1,5 @@
 package com.example.order_management.business.order;
 
-import com.example.order_management.domain.order.OrderDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
