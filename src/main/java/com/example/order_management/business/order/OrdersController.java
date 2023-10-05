@@ -24,7 +24,7 @@ public class OrdersController {
     @PostMapping("/orderline")
     @Operation(summary = "Adds orderline to Order")
     public void createOrderLine(@RequestParam Integer customerOrderId, @RequestParam Integer skuCode, @RequestParam Integer quantity) {
-        ordersService.addOrderLine(customerOrderId, skuCode, quantity);
+        ordersService.createOrderLine(customerOrderId, skuCode, quantity);
     }
 
     @GetMapping("/orders")

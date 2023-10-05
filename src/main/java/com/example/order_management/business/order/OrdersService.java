@@ -57,7 +57,7 @@ public class OrdersService {
         return order;
     }
 
-    public void addOrderLine(Integer customerOrderId, Integer skuCode, Integer quantity) {
+    public void createOrderLine(Integer customerOrderId, Integer skuCode, Integer quantity) {
         CustomerOrder customerOrder = customerOrderService.findCustomerOrderBy(customerOrderId);
         Order order = customerOrder.getOrder();
         Product product = productService.findProductBy(skuCode);
