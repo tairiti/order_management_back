@@ -14,4 +14,11 @@ public class ValidationService {
             throw new BusinessException(Error.PRODUCT_UNAVAILABLE.getMessage(), Error.PRODUCT_UNAVAILABLE.getErrorCode());
         }
     }
+
+
+    public static void validateOrderExists(boolean orderExists) {
+        if (!orderExists) {
+            throw new BusinessException(Error.ORDERS_NOT_FOUND.getMessage(), Error.ORDERS_NOT_FOUND.getErrorCode());
+        }
+    }
 }

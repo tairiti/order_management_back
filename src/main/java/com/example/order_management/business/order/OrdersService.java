@@ -1,8 +1,11 @@
 package com.example.order_management.business.order;
 
 import com.example.order_management.domain.customerorder.CustomerOrder;
+import com.example.order_management.domain.customerorder.CustomerOrderMapper;
 import com.example.order_management.domain.customerorder.CustomerOrderService;
 import com.example.order_management.domain.order.Order;
+import com.example.order_management.domain.order.OrderDto;
+import com.example.order_management.domain.order.OrderMapper;
 import com.example.order_management.domain.order.OrderService;
 import com.example.order_management.domain.orderline.OrderLine;
 import com.example.order_management.domain.orderline.OrderLineService;
@@ -12,11 +15,12 @@ import com.example.order_management.domain.orderorderline.OrderOrderLine;
 import com.example.order_management.domain.orderorderline.OrderOrderLineService;
 import com.example.order_management.domain.product.Product;
 import com.example.order_management.domain.product.ProductService;
+import com.example.order_management.validation.ValidationService;
 import jakarta.annotation.Resource;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OrdersService {
@@ -32,31 +36,12 @@ public class OrdersService {
     private CustomerService customerService;
     @Resource
     private CustomerOrderService customerOrderService;
+    @Resource
+    private CustomerOrderMapper customerOrderMapper;
+    @Resource
+    private OrderMapper orderMapper;
 
-//    public void createNewOrder(Integer skuCode, Integer quantity, Integer customerId) {
-//        Order order = new Order();
-//        order.setSubmissionDate(LocalDate.now());
-//        orderService.saveOrder(order);
-//
-//        Customer customer = customerService.findCustomerBy(customerId);
-//        CustomerOrder customerOrder = new CustomerOrder();
-//        customerOrder.setCustomer(customer);
-//        customerOrder.setOrder(order);
-//        customerOrderService.saveCustomerOrder(customerOrder);
-//
-//        Product product = productService.findProductBy(skuCode);
-//
-//        OrderLine orderLine = new OrderLine();
-//        orderLine.setQuantity(quantity);
-//        orderLine.setProduct(product);
-//        orderLineService.saveOrderLine(orderLine);
-//
-//        OrderOrderLine orderOrderLine = new OrderOrderLine();
-//        orderOrderLine.setOrder(order);
-//        orderOrderLine.setOrderLine(orderLine);
-//        orderOrderLineService.saveOrderOrderLine(orderOrderLine);
-//    }
-    public Integer createNewCustomerOrder(Integer customerId) {
+    public CustomerOrderResponse createNewCustomerOrder(Integer customerId) {
         Order order = new Order();
         order.setSubmissionDate(LocalDate.now());
         orderService.saveOrder(order);
@@ -66,7 +51,7 @@ public class OrdersService {
         customerOrder.setCustomer(customer);
         customerOrder.setOrder(order);
         customerOrderService.saveCustomerOrder(customerOrder);
-        return customerOrder.getId();
+        return customerOrderMapper.toCustomerOrderResponse(customerOrder);
     }
 
     public void addOrderLine(Integer customerOrderId, Integer skuCode, Integer quantity) {
@@ -84,5 +69,12 @@ public class OrdersService {
         orderOrderLine.setOrder(order);
         orderOrderLine.setOrderLine(orderLine);
         orderOrderLineService.saveOrderOrderLine(orderOrderLine);
+    }
+
+    public List<OrderDto> findAllOrdersByDate(LocalDate date) {
+        boolean orderExists = orderService.orderExistsBy(date);
+        ValidationService.validateOrderExists(orderExists);
+        List<Order> orders = orderService.findOrdersBy(date);
+        return orderMapper.toOrderDtos(orders);
     }
 }
