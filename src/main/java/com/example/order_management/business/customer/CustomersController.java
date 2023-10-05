@@ -20,7 +20,7 @@ public class CustomersController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "403", description = "This email is already in use",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public void addCustomer(@RequestBody CustomerRequest customerRequest) {
+    public void createCustomer(@RequestBody CustomerRequest customerRequest) {
         customersService.addCustomer(customerRequest);
     }
 }

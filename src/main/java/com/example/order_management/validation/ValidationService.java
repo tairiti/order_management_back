@@ -15,7 +15,6 @@ public class ValidationService {
         }
     }
 
-
     public static void validateOrderExists(boolean orderExists) {
         if (!orderExists) {
             throw new BusinessException(Error.ORDERS_NOT_FOUND.getMessage(), Error.ORDERS_NOT_FOUND.getErrorCode());

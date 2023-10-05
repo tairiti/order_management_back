@@ -23,12 +23,12 @@ public class OrdersController {
 
     @PostMapping("/orderline")
     @Operation(summary = "Adds orderline to Order")
-    public void addOrderLine(@RequestParam Integer customerOrderId, @RequestParam Integer skuCode, @RequestParam Integer quantity) {
+    public void createOrderLine(@RequestParam Integer customerOrderId, @RequestParam Integer skuCode, @RequestParam Integer quantity) {
         ordersService.addOrderLine(customerOrderId, skuCode, quantity);
     }
 
     @GetMapping("/orders")
-    @Operation(summary = "Finds all orderds by date")
+    @Operation(summary = "Finds all orders by date")
     public List<OrderDto> findAllOrdersByDate(@RequestParam LocalDate date) {
         return ordersService.findAllOrdersByDate(date);
     }

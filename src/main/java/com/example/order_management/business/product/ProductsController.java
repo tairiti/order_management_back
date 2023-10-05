@@ -13,7 +13,7 @@ public class ProductsController {
 
     @PostMapping("/product")
     @Operation(summary = "Adds product to database")
-    public void addProduct(@RequestBody ProductRequest productRequest) {
-        productsService.addProduct(productRequest);
+    public void createProduct(@RequestBody ProductRequest productRequest) {
+        productsService.createProduct(productRequest);
     }
 }

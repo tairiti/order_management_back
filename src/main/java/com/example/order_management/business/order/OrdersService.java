@@ -42,7 +42,6 @@ public class OrdersService {
 
     public CustomerOrderResponse createNewCustomerOrder(Integer customerId) {
         Order order = createAndSaveOrder();
-
         Customer customer = customerService.findCustomerBy(customerId);
         CustomerOrder customerOrder = new CustomerOrder();
         customerOrder.setCustomer(customer);
@@ -61,14 +60,11 @@ public class OrdersService {
     public void addOrderLine(Integer customerOrderId, Integer skuCode, Integer quantity) {
         CustomerOrder customerOrder = customerOrderService.findCustomerOrderBy(customerOrderId);
         Order order = customerOrder.getOrder();
-
         Product product = productService.findProductBy(skuCode);
-
         OrderLine orderLine = new OrderLine();
         orderLine.setProduct(product);
         orderLine.setQuantity(quantity);
         orderLineService.saveOrderLine(orderLine);
-
         OrderOrderLine orderOrderLine = new OrderOrderLine();
         orderOrderLine.setOrder(order);
         orderOrderLine.setOrderLine(orderLine);
