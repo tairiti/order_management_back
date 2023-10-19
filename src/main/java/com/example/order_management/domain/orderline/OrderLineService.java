@@ -1,9 +1,9 @@
 package com.example.order_management.domain.orderline;
 
-import com.example.order_management.domain.orderline.OrderLine;
-import com.example.order_management.domain.orderline.OrderLineRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderLineService {
@@ -11,5 +11,9 @@ public class OrderLineService {
     OrderLineRepository orderLineRepository;
     public void saveOrderLine(OrderLine orderLine) {
         orderLineRepository.save(orderLine);
+    }
+
+    public void saveOrderLines(List<OrderLine> orderLines) {
+        orderLineRepository.saveAll(orderLines);
     }
 }

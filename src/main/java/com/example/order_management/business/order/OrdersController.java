@@ -2,10 +2,7 @@ package com.example.order_management.business.order;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,15 +13,9 @@ public class OrdersController {
     private OrdersService ordersService;
 
     @PostMapping("/order")
-    @Operation(summary = "Adds new customer order to database and returns customerOrderId.")
-    public CustomerOrderResponse createNewCustomerOrder(@RequestParam Integer customerId) {
-        return ordersService.createNewCustomerOrder(customerId);
-    }
-
-    @PostMapping("/orderline")
-    @Operation(summary = "Adds orderline to Order")
-    public void createOrderLine(@RequestParam Integer customerOrderId, @RequestParam Integer skuCode, @RequestParam Integer quantity) {
-        ordersService.createOrderLine(customerOrderId, skuCode, quantity);
+    @Operation(summary = "Adds new customer order to database")
+    public void createNewCustomerOrder(@RequestBody OrderCreation orderCreation) {
+        ordersService.createNewCustomerOrder(orderCreation);
     }
 
     @GetMapping("/orders")
